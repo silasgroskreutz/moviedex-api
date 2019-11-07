@@ -7,10 +7,10 @@ const MOVIES = require('./movies-data-small.json')
 
 const app = express()
 
-const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
-app.use(morgan(morganSetting))
-app.use(helmet())
+//const morganSetting = process.env.NODE_ENV === 'production' ? 'tiny' : 'common'
+app.use(morgan('dev'))
 app.use(cors())
+app.use(helmet())
 
 //based on pokemon example code (checkpoint 6)
 //helmet middleware is in 'fetchful' section
@@ -26,7 +26,6 @@ app.use(function validateBearerToken(req, res, next) {
 
 app.get('/movie', function handleGetMovies(req, res) {
     let response = MOVIES;
-
     // assignment has 3 types of responses genre, counttry, avg_vote
     // in query string paramters
 
@@ -49,7 +48,7 @@ app.get('/movie', function handleGetMovies(req, res) {
         )
       }
 
-
+      res.json(response)
 } )
 
 const PORT = process.env.PORT || 8000
