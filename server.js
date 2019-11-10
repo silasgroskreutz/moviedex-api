@@ -30,7 +30,7 @@ app.get('/movie', function handleGetMovies(req, res) {
     // in query string paramters
 
     if (req.query.genre) {
-        response = repsonse.filter(movie =>
+        response = response.filter(movie =>
             movie.genre.toLowerCase().includes(req.query.genre.toLowerCase())
         )
     }
